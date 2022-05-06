@@ -9,7 +9,6 @@ networks:
 # will contain all elasticsearch data.
 volumes:
   elasticsearch-data:
-    external: true
 
 secrets:
   elasticsearch.keystore:
