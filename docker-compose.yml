@@ -5,6 +5,9 @@ networks:
   default:
     name: elastic
     external: false
+  pub:
+    external:
+      name: public
 
 # will contain all elasticsearch data.
 volumes:
@@ -61,6 +64,9 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    networks:
+      pub:
+        ipv4_address: 10.1.15.47
     ulimits:
       memlock:
         soft: -1
@@ -93,6 +99,9 @@ services:
     ports:
       - "5044:5044"
       - "9600:9600"
+    networks:
+      pub:
+        ipv4_address: 10.1.15.48
     healthcheck:
       test: ["CMD", "curl", "-s" ,"-XGET", "http://127.0.0.1:9600"]
 
@@ -120,3 +129,6 @@ services:
         target: /certs/kibana.key
     ports:
       - "5601:5601"
+    networks:
+      pub:
+        ipv4_address: 10.1.15.49
